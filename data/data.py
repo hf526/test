@@ -28,5 +28,3 @@ def get_case(name,sheel):   #得到用例
     except (ValueError, Exception):
         logger.error('传入无效的参数')
 
-
-

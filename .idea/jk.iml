@@ -7,5 +7,6 @@
     <orderEntry type="module" module-name="automation_framework_demo" />
     <orderEntry type="module" module-name="jiekou" />
     <orderEntry type="module" module-name="hf" />
+    <orderEntry type="module" module-name="test1" />
   </component>
 </module>
