@@ -8,5 +8,6 @@
     <orderEntry type="module" module-name="jiekou" />
     <orderEntry type="module" module-name="hf" />
     <orderEntry type="module" module-name="test1" />
+    <orderEntry type="module" module-name="python" />
   </component>
 </module>
