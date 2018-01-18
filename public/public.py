@@ -1,8 +1,9 @@
 #coding=utf-8
-import requests,unittest,json,time,os,ConfigParser
+import requests,unittest,json,time,os,ConfigParser,xlrd
 from log import Logger
 from selenium import webdriver
 
+workbook =None
 logger = Logger().get_loger()
 class BasePage(object):
     def __init__(self, driver):
@@ -17,7 +18,7 @@ class BasePage(object):
         self.driver.forward()
         logger.info("go browser")
     def max(self):
-        driver.maximize_window()
+        self.driver.maximize_window()
         # 隐式等待
     def wait(self, seconds):
         self.driver.implicitly_wait(seconds)
@@ -110,3 +111,47 @@ class BasePage(object):
     def sleep(seconds):
         time.sleep(seconds)
         logger.info("Sleep for %d seconds" % seconds)
+
+def api_test(method, url, data, headers):
+    """
+    定义一个请求接口的方法和需要的参数
+    """
+    try:
+        if method == "post":
+            results = requests.post(url, data, headers=headers)
+        if method == "get":
+            results = requests.get(url, data, headers=headers)
+        if method == "put":
+            results = requests.put(url, data, headers=headers)
+        if method == "delete":
+            results = requests.delete(url, headers=headers)
+        if method == "patch":
+            results == requests.patch(url, data, headers=headers)
+        if method == "options":
+            results == requests.options(url, headers=headers)
+        return results
+    except Exception, e:
+        logger.error("service is error", e)
+
+def open_excil(path):
+    global workbook
+    if workbook == None:
+        try:
+            workbook = xlrd.open_workbook(path)  # 打开Excel文件读取数据
+        except  Exception,e:
+            logger.error(Exception,":",e+' 可能是由于excil文件找不到')
+def get_excil(Sheet1Name):
+    return workbook.sheet_by_name(Sheet1Name)  # 获取一个工作表
+def get_row_number(table):  # 获取行数和列数
+    return table.nrows
+def get_ncols_number(table):
+    return table.ncols
+def get_row(table,i):  # 获取整行和整列的值（数组）
+    return  table.row_values(i)
+def get_cols(table,i):
+    return table.col_values(i)
+def get_content(table, row, col):  # 获取单元格内容
+        return table.cell(row, col).value
+def close():
+      global workbook
+      workbook.close()
