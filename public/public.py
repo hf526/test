@@ -117,10 +117,14 @@ def api_test(method, url, data, headers):
     定义一个请求接口的方法和需要的参数
     """
     try:
-        if method == "post":
-            results = requests.post(url, data, headers=headers)
-        if method == "get":
-            results = requests.get(url, data, headers=headers)
+        if method == "post"and isinstance(data,dict):
+            results = requests.post(url,data=data, headers=headers)
+        if method == "post"and isinstance(data,str):
+            results = requests.post(url,json=data, headers=headers)
+        if method == "get"and isinstance(data,dict):
+            results = requests.get(url, data=data, headers=headers)
+        if method == "get"and isinstance(data,str):
+            results = requests.get(url, json=data, headers=headers)
         if method == "put":
             results = requests.put(url, data, headers=headers)
         if method == "delete":
