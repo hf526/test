@@ -18,7 +18,7 @@ class Imcloud_Flow(unittest.TestCase):
         for i in range(data.number-1):
             a = public.api_test(data.method[i],data.URL[i], data.data[i], data.harder[i])
             chick=data.chick[i].split('=>', 1)
-            print chick[0]
+            print chick[0],chick[1]
             print a.text
             if a.status_code == 200:
                 b = json.loads(a.text)
