@@ -50,16 +50,17 @@
      <div class="layui-form-item">
        <label class="layui-form-label">接口信息</label>
           <div class="layui-input-block">
-              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="接口名称" class="layui-input" id="aa">
-              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请求方式" class="layui-input">
-              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="接口地址" class="layui-input">
-              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="接口参数" class="layui-input">
-              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请求头" class="layui-input">
+              <input type="text" id="case" lay-verify="title" autocomplete="off" placeholder="用例名称（仅访问时无需填写）" class="layui-input" >
+              <input type="text" id="name" lay-verify="title" autocomplete="off" placeholder="接口名称" class="layui-input" >
+              <input type="text" id="md" lay-verify="title" autocomplete="off" placeholder="请求方式" class="layui-input">
+              <input type="text" id="path" lay-verify="title" autocomplete="off" placeholder="接口地址" class="layui-input">
+              <input type="text" id="data" lay-verify="title" autocomplete="off" placeholder="接口参数" class="layui-input">
+              <input type="text" id="harder" lay-verify="title" autocomplete="off" placeholder="请求头" class="layui-input">
           </div>
        <div class="layui-form-item">
           <div class="layui-input-block">
-            <button class="layui-btn"  lay-filter="demo1" id="submit">保存接口</button>
-            <button type="reset" class="layui-btn layui-btn-primary">访问</button>
+            <button class="layui-btn"  lay-filter="demo1" id="submit">保存用例</button>
+            <button type="reset" class="layui-btn layui-btn-primary">访问接口</button>
           </div>
         </div>
     </div>
@@ -74,7 +75,13 @@ $(document).ready(function(){
 $("#submit").click(function(){
     $.post("/login",
     {
-        name:$("#aa").val();
+        case:$("#case").val(),
+        name:$("#name").val(),
+        method:$("#md").val(),
+        url:$("#path").val(),
+        data:$("#data").val(),
+        harder:$("#harder").val()
+
     },
         function(data,status){
         alert("数据: \n" + data + "\n状态: " + status);
