@@ -23,10 +23,11 @@ def get_api():
 def insert():  #获取请求参数
     data = request.form.to_dict()
     t=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")    #获取当前时间
-    d1=d.replace("\,", "\"");
-    h = harder.replace("\,", "\"");
-    print d1,h
-    db.execute("insert into interface_message (case_name,name, apiurl, harder,data,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')"\
+    d2=d.replace("\'", "\*")
+    d1 = d2.replace("\"", "\^")
+    print d1
+    h = harder.replace("\,", "\"")
+    db.execute("insert into interface_message (case_name,name, apiurl, harder,value,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')"\
     %(case,name,url,h,d1 ,method,t))  #执行语句
     conn.commit() #提交事务
     db.close()   #关闭游标

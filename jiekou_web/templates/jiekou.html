@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>接口测试系统</title>
+  <title>{{title}}</title>
   <link rel="stylesheet" href="../static/layui/css/layui.css">
   <link href="../static/layui/css/me.css" rel="stylesheet" type="text/css" />
   <script src="../static/layui/jquery-3.3.1.min.js"></script>
@@ -38,8 +38,8 @@
         <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">接口</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">添加接口</a></dd>
-            <dd><a href="javascript:;">已添接口</a></dd>
+            <dd><a href="/">添加接口</a></dd>
+            <dd><a href="/see">已添接口</a></dd>
           </dl>
         </li>
       </ul>
@@ -47,7 +47,8 @@
   </div>
 
   <div class="layui-body">
-     <div class="layui-form-item">
+      {%if title=='tj'%}
+      <div class="layui-form-item">
        <label class="layui-form-label">接口信息</label>
           <div class="layui-input-block">
               <input type="text" id="case" lay-verify="title" autocomplete="off" placeholder="用例名称（仅访问时无需填写）" class="layui-input" >
@@ -65,6 +66,11 @@
           </div>
         </div>
     </div>
+      {% elif title=='yt'%}
+            <table class="layui-hide" id="test"></table>
+            <blockquote class="layui-elem-quote layui-quote-nm layui-text" style="margin-top: 10px;">
+            </blockquote>
+       {% endif%}
   </div>
   <div class="layui-footer">
     © x13155916315.com - Saber
@@ -72,38 +78,83 @@
 </div>
 <script src="../static/layui/layui.js"></script>
 <script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+layui.use('table', function(){
+              var table = layui.table;
+              table.render({
+                elem: '#test'
+                ,url:'/demo'
+                ,cellMinWidth: 10
+                ,cols: [[
+                  {field:'id', title: '用例ID', sort: true}
+                  ,{field:'username', title: '用例名称'}
+                  ,{field:'sex', title: '接口名称', sort: true}
+                  ,{field:'city', title: '请求方式'}
+                  ,{field:'sign', title: '接口地址'}
+                  ,{field:'classify', title: '接口参数',}
+                  ,{field:'experience', title: '请求头', sort: true}
+                  ,{field:'score', title: '检查点', sort: true}
+                  ,{field:'wealth', title: '财富', sort: true}
+                ]]
+              });
+            });
 $(document).ready(function(){
-$("#submit").click(function(){
-    $.post("/login",
-    {
-        case:$("#case").val(),
-        name:$("#name").val(),
-        method:$("#md").val(),
-        url:$("#path").val(),
-        data:$("#data").val(),
-        harder:$("#harder").val(),
-        jcd:$("#jcd").val()
+    $("#submit").click(function(){
+        $.post("/login",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
 
-    },
-        function(data,status){
-        alert("数据: \n" + data + "\n状态: " + status);
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
     });
-});
-$("#chick").click(function(){
-    $.post("/interface",
-    {
-        case:$("#case").val(),
-        name:$("#name").val(),
-        method:$("#md").val(),
-        url:$("#path").val(),
-        data:$("#data").val(),
-        harder:$("#harder").val(),
-        jcd:$("#jcd").val()
-    },
-        function(data,status){
-        alert("数据: \n" + data + "\n状态: " + status);
+    $("#chick").click(function(){
+        $.post("/interface",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
     });
-});
+    $("#chick").click(function(){
+        $.post("/interface",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
+    });
+    $("#see").click(function(){
+        $.post("/interface",
+        {
+        },
+            function(data,status){
+            alert("状态: ");
+        });
+    });
 });
 </script>
 </body>
