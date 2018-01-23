@@ -1,18 +1,50 @@
 #coding=utf-8
-import MySQLdb,time,datetime
+import MySQLdb,time,datetime,requests
+from flask import Flask,request
 
-from flask import Flask,render_template,request
+
+h= "{'Content-Type': 'application/json'}"
+h2='{"Content-Type": "application/x-www-form-urlencoded"}'
+data,case,name,url,harder,d,method,jcd=None,None,None,None,None,None,None,None
 
 conn=MySQLdb.connect(host='localhost',user='root',passwd='root',db='interface',port=3306)  #连接数据库
 db = conn.cursor()  #获取游标
-def insert():
-    data = request.form.to_dict()  #获取请求参数
-    print data
+
+def get_api():
+    global data,case,name,url,harder,d,method,jcd
+    data=request.form.to_dict()
+    case = data['case'].encode('utf-8')
+    name = data['name'].encode('utf-8')
+    url = data['url'].encode('utf-8')
+    harder = data['harder'].encode('utf-8')
+    d = data['data'].encode('utf-8')
+    method = data['method'].encode('utf-8')
+    jcd = data['jcd'].encode('utf-8')
+def insert():  #获取请求参数
+    data = request.form.to_dict()
     t=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")    #获取当前时间
+    d1=d.replace("\,", "\"");
+    h = harder.replace("\,", "\"");
+    print d1,h
     db.execute("insert into interface_message (case_name,name, apiurl, harder,data,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')"\
-    %(data['case'].encode('utf-8'),data['name'].encode('utf-8'),data['url'].encode('utf-8'), data['harder'].encode('utf-8')\
-    ,data['data'].encode('utf-8') ,data['method'].encode('utf-8'),t ))  #执行语句
+    %(case,name,url,h,d1 ,method,t))  #执行语句
     conn.commit() #提交事务
     db.close()   #关闭游标
     conn.close()  #关闭数据库连接
-print datetime.datetime.now()
+def api_test(method, url, d, harder):  #处理请求
+    if method.lower()=="get":
+        r= requests.get(url, params=d, headers=harder)
+    elif method.lower() == "post" and harder == h:
+        r= requests.post(url, json=d, headers=harder)
+    elif method.lower()=="post" and harder == h2:
+        r = requests.post(url, data=eval(d), headers=eval(harder))
+    return r
+    # if method == "put":
+    #     results = requests.put(url, data, headers=header)
+    # if method == "delete":
+    #     results = requests.delete(url, headers=header)
+    # if method == "patch":
+    #     results == requests.patch(url, data, headers=header)
+    # if method == "options":
+    #     results == requests.options(url, headers=header)
+

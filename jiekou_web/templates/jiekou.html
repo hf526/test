@@ -56,11 +56,12 @@
               <input type="text" id="path" lay-verify="title" autocomplete="off" placeholder="接口地址" class="layui-input">
               <input type="text" id="data" lay-verify="title" autocomplete="off" placeholder="接口参数" class="layui-input">
               <input type="text" id="harder" lay-verify="title" autocomplete="off" placeholder="请求头" class="layui-input">
+              <input type="text" id="jcd" lay-verify="title" autocomplete="off" placeholder="检查点" class="layui-input">
           </div>
        <div class="layui-form-item">
           <div class="layui-input-block">
             <button class="layui-btn"  lay-filter="demo1" id="submit">保存用例</button>
-            <button type="reset" class="layui-btn layui-btn-primary">访问接口</button>
+            <button id="chick" class="layui-btn layui-btn-primary">访问接口</button>
           </div>
         </div>
     </div>
@@ -80,8 +81,24 @@ $("#submit").click(function(){
         method:$("#md").val(),
         url:$("#path").val(),
         data:$("#data").val(),
-        harder:$("#harder").val()
+        harder:$("#harder").val(),
+        jcd:$("#jcd").val()
 
+    },
+        function(data,status){
+        alert("数据: \n" + data + "\n状态: " + status);
+    });
+});
+$("#chick").click(function(){
+    $.post("/interface",
+    {
+        case:$("#case").val(),
+        name:$("#name").val(),
+        method:$("#md").val(),
+        url:$("#path").val(),
+        data:$("#data").val(),
+        harder:$("#harder").val(),
+        jcd:$("#jcd").val()
     },
         function(data,status){
         alert("数据: \n" + data + "\n状态: " + status);

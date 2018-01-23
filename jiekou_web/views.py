@@ -1,18 +1,23 @@
 #coding=utf-8
-from flask import Flask,render_template,request
-import  model
+import model
+from flask import Flask,render_template
 
 app=Flask(__name__)
 
 
+@app.route('/')
+def index():
+    return render_template("jiekou.html")
 @app.route("/login",methods=['POST', 'GET'])
 def login():
     model.savedata()
     return "<h1>sss</h1>"
-@app.route('/')
-def index():
-    return render_template("jiekou.html")
+@app.route('/interface',methods=['POST', 'GET'])
+def interface():
+    model.interface_access()
+    return model.interface_access()
+
 
 if __name__=='__main__':
-    app.run(host='192.168.43.102',debug=True)
+    app.run(host='172.16.3.12',debug=True)
 
