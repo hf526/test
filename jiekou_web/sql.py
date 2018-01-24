@@ -30,8 +30,8 @@ def insert():  #获取请求参数
     db.execute("insert into interface_message (case_name,name, apiurl, harder,value,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')"\
     %(case,name,url,h,d1 ,method,t))  #执行语句
     conn.commit() #提交事务
-    db.close()   #关闭游标
-    conn.close()  #关闭数据库连接
+    db.close()  # 关闭游标
+    conn.close()  # 关闭数据库连接
 def api_test(method, url, d, harder):  #处理请求
     if method.lower()=="get":
         r= requests.get(url, params=d, headers=harder)
@@ -48,4 +48,11 @@ def api_test(method, url, d, harder):  #处理请求
     #     results == requests.patch(url, data, headers=header)
     # if method == "options":
     #     results == requests.options(url, headers=header)
+
+db.execute("select * from interface_message")# 执行语句
+results = db.fetchall()
+
+
+
+
 

@@ -21,12 +21,13 @@ def see():
     return render_template("jiekou.html", title='yt')
 @app.route('/demo')
 def demo():
-    dict = {'data':'{"city":"a", "classify":"b", "experience":"225", \
-    "id":"10000" , "logins":"24", "score":"57", "sex":"c", "sign":"d", "username":"user", "wealth":"82830700"}'}
-    return dict
+    # d = {'data':[{"city":"a", "classify":"b", "experience":"225", \
+    # "id":"10000" , "logins":"24", "score":"57", "sex":"c", "sign":"d", "username":"user", "wealth":"82830700"}]}
+    d='{"code":0,"msg":"","count":1000,"data":[{"id": "a", "case": "b", "name": 225 , "md": 10000, "path": 24, "data": 57, "harder": "c", "jcd": "d", "time": "user", "r": 82830700}]}'
+    return d
 
 
 
 if __name__=='__main__':
-    # app.run(host='172.16.3.12',debug=True)
-    app.run(host='192.168.43.102', debug=True)
+    app.run(host='172.16.3.12',debug=True)
+    # app.run(host='192.168.43.102', debug=True)

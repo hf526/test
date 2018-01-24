@@ -67,9 +67,7 @@
         </div>
     </div>
       {% elif title=='yt'%}
-            <table class="layui-hide" id="test"></table>
-            <blockquote class="layui-elem-quote layui-quote-nm layui-text" style="margin-top: 10px;">
-            </blockquote>
+           <table id="demo" lay-filter="test"></table>
        {% endif%}
   </div>
   <div class="layui-footer">
@@ -83,20 +81,21 @@ layui.use('element', function(){
 });
 layui.use('table', function(){
               var table = layui.table;
-              table.render({
-                elem: '#test'
-                ,url:'/demo'
-                ,cellMinWidth: 10
+             table.render({
+                elem: '#demo'
+                ,cellMinWidth: 80
+                ,url: '/demo'
+                ,page: true
                 ,cols: [[
-                  {field:'id', title: '用例ID', sort: true}
-                  ,{field:'username', title: '用例名称'}
-                  ,{field:'sex', title: '接口名称', sort: true}
-                  ,{field:'city', title: '请求方式'}
-                  ,{field:'sign', title: '接口地址'}
-                  ,{field:'classify', title: '接口参数',}
-                  ,{field:'experience', title: '请求头', sort: true}
-                  ,{field:'score', title: '检查点', sort: true}
-                  ,{field:'wealth', title: '财富', sort: true}
+                  {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                  ,{field: 'case', title: '用例名称', }
+                  ,{field: 'name', title: '接口名称', sort: true}
+                  ,{field: 'md', title: '请求方式'}
+                  ,{field: 'path', title: '接口地址'}
+                  ,{field: 'data', title: '接口参数',  sort: true}
+                  ,{field: 'harder', title: '请求头',  sort: true}
+                  ,{field: 'jcd', title: '检查点', }
+                  ,{field: 'r', title: '结果', sort: true}
                 ]]
               });
             });
