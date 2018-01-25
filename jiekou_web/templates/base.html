@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <link href="../static/layui/css/me.css" rel="stylesheet" type="text/css" />
+  <script src="../static/layui/jquery-3.3.1.min.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">接口测试</div>
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          胡丰
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">接口</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/">添加接口</a></dd>
+            <dd><a href="/see">已添接口</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="layui-body">
+        {% block base %}{% endblock %}
+  </div>
+  <div class="layui-footer">
+    © x13155916315.com - Saber
+  </div>
+</div>
+<script src="../static/layui/jk.js"></script>
+<script src="../static/layui/layui.js"></script>
+</body>
+</html>

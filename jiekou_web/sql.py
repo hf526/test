@@ -25,21 +25,26 @@ def insert():  #获取请求参数
     t=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")    #获取当前时间
     d2=d.replace("\'", "\*")
     d1 = d2.replace("\"", "\^")
-    print d1
     h = harder.replace("\,", "\"")
-    db.execute("insert into interface_message (case_name,name, apiurl, harder,value,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')"\
+    try:
+        db.execute("insert into interface_message (case_name,name, apiurl, harder,value,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')" \
     %(case,name,url,h,d1 ,method,t))  #执行语句
+    except BaseException as e:
+        print "插入数据库出错%s" % e
     conn.commit() #提交事务
     db.close()  # 关闭游标
     conn.close()  # 关闭数据库连接
 def api_test(method, url, d, harder):  #处理请求
-    if method.lower()=="get":
-        r= requests.get(url, params=d, headers=harder)
-    elif method.lower() == "post" and harder == h:
-        r= requests.post(url, json=d, headers=harder)
-    elif method.lower()=="post" and harder == h2:
-        r = requests.post(url, data=eval(d), headers=eval(harder))
-    return r
+    try:
+        if method.lower()=="get":
+            r= requests.get(url, params=d, headers=harder)
+        elif method.lower() == "post" and harder == h:
+            r= requests.post(url, json=d, headers=harder)
+        elif method.lower()=="post" and harder == h2:
+            r = requests.post(url, data=eval(d), headers=eval(harder))
+        return r
+    except BaseException as e:
+        print "处理请求出错%s"%e
     # if method == "put":
     #     results = requests.put(url, data, headers=header)
     # if method == "delete":
