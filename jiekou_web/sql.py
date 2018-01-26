@@ -20,6 +20,7 @@ def get_api():
     d = data['data'].encode('utf-8')
     method = data['method'].encode('utf-8')
     jcd = data['jcd'].encode('utf-8')
+    return  method
 def insert():  #获取请求参数
     data = request.form.to_dict()
     t=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")    #获取当前时间
@@ -30,7 +31,7 @@ def insert():  #获取请求参数
         db.execute("insert into interface_message (case_name,name, apiurl, harder,value,method,creat_time) values ('%s','%s','%s','%s','%s','%s','%s')" \
     %(case,name,url,h,d1 ,method,t))  #执行语句
     except BaseException as e:
-        print "插入数据库出错%s" % e
+        return "插入数据库出错"
     conn.commit() #提交事务
     db.close()  # 关闭游标
     conn.close()  # 关闭数据库连接
@@ -44,7 +45,7 @@ def api_test(method, url, d, harder):  #处理请求
             r = requests.post(url, data=eval(d), headers=eval(harder))
         return r
     except BaseException as e:
-        print "处理请求出错%s"%e
+        return "处理请求出错 "
     # if method == "put":
     #     results = requests.put(url, data, headers=header)
     # if method == "delete":

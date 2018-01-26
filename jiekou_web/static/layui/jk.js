@@ -7,7 +7,12 @@ var h=$("#harder").val();
 var j=$("#jcd").val();
 
 $("#chick").click(function(){
-    $.post("/fangwenjk",
+    if (get_val("#method")==null|| get_val("#path")==null|| get_val("#path")==null)
+        {
+                    alert("success");
+        }
+    else{
+        $.post("/fangwenjk",
     {
 //        case:c,
 //        name:n,
@@ -28,6 +33,8 @@ $("#chick").click(function(){
         function(data,status){
         alert("数据: \n" + data + "\n状态: " + status);
     });
+    };
+
 });
 function get_val(d){     //获取输入值
     return $(d).val()

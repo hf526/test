@@ -16,7 +16,7 @@ def jkfw():
     try:
        return  model.interface_access()
     except BaseException as e:
-        print e
+        return "a"
 # @app.route("/login",methods=['POST', 'GET'])
 # def login():
 #     model.savedata()
@@ -36,5 +36,5 @@ def jkfw():
 
 
 if __name__=='__main__':
-    app.run(host='172.16.3.12',debug=True)
-    # app.run(host='192.168.43.102', debug=True)
+    # app.run(host='172.16.3.12',debug=True)
+    app.run(host='192.168.43.102', debug=True)

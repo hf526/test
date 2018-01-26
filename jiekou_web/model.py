@@ -10,7 +10,8 @@ def interface_access():
         sql.get_api()
         s=sql.d
         r=sql.api_test(sql.method,sql.url,sql.d,sql.harder)
-        return r.text
+        # return r.text
+        return sql.get_api()
     except BaseException as e:
-        print e
+        return sql.get_api()
 
