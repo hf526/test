@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <link href="../static/layui/css/me.css" rel="stylesheet" type="text/css" />
+  <script src="../static/layui/jquery-3.3.1.min.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">接口测试</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          胡丰
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">接口</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/">添加接口</a></dd>
+            <dd><a href="/see">已添接口</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layui-body">
+      {%if title=='tj'%}
+      <div class="layui-form-item">
+       <label class="layui-form-label">接口信息</label>
+          <div class="layui-input-block">
+              <input type="text" id="case" lay-verify="title" autocomplete="off" placeholder="用例名称（仅访问时无需填写）" class="layui-input" >
+              <input type="text" id="name" lay-verify="title" autocomplete="off" placeholder="接口名称" class="layui-input" >
+              <input type="text" id="md" lay-verify="title" autocomplete="off" placeholder="请求方式" class="layui-input">
+              <input type="text" id="path" lay-verify="title" autocomplete="off" placeholder="接口地址" class="layui-input">
+              <input type="text" id="data" lay-verify="title" autocomplete="off" placeholder="接口参数" class="layui-input">
+              <input type="text" id="harder" lay-verify="title" autocomplete="off" placeholder="请求头" class="layui-input">
+              <input type="text" id="jcd" lay-verify="title" autocomplete="off" placeholder="检查点" class="layui-input">
+          </div>
+       <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn"  lay-filter="demo1" id="submit">保存用例</button>
+            <button id="chick" class="layui-btn layui-btn-primary">访问接口</button>
+          </div>
+        </div>
+    </div>
+      {% elif title=='yt'%}
+           <table id="demo" lay-filter="test"></table>
+       {% endif%}
+  </div>
+  <div class="layui-footer">
+    © x13155916315.com - Saber
+  </div>
+</div>
+<script src="../static/layui/layui.js"></script>
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+layui.use('table', function(){
+              var table = layui.table;
+             table.render({
+                elem: '#demo'
+                ,cellMinWidth: 80
+                ,url: '/demo'
+                ,page: true
+                ,cols: [[
+                  {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                  ,{field: 'case', title: '用例名称', }
+                  ,{field: 'name', title: '接口名称', sort: true}
+                  ,{field: 'md', title: '请求方式'}
+                  ,{field: 'path', title: '接口地址'}
+                  ,{field: 'data', title: '接口参数',  sort: true}
+                  ,{field: 'harder', title: '请求头',  sort: true}
+                  ,{field: 'jcd', title: '检查点', }
+                  ,{field: 'r', title: '结果', sort: true}
+                ]]
+              });
+            });
+$(document).ready(function(){
+    $("#submit").click(function(){
+        $.post("/login",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
+
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
+    });
+    $("#chick").click(function(){
+        $.post("/interface",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
+    });
+    $("#chick").click(function(){
+        $.post("/interface",
+        {
+            case:$("#case").val(),
+            name:$("#name").val(),
+            method:$("#md").val(),
+            url:$("#path").val(),
+            data:$("#data").val(),
+            harder:$("#harder").val(),
+            jcd:$("#jcd").val()
+        },
+            function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        });
+    });
+    $("#see").click(function(){
+        $.post("/interface",
+        {
+        },
+            function(data,status){
+            alert("状态: ");
+        });
+    });
+});
+</script>
+</body>
+</html>

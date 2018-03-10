@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>xiaoai-admin</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" href="layui/css/xiaoai-admin.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">真正开始</div>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          Saber
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">修改密码</a></dd>
+          <dd><a href="">退出系统</a></dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree layui-daohang "  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;"><i class="layui-icon">&#xe68e;</i> 后台首页</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">Saber</a></dd>
+            <dd><a href="javascript:;">虎牙</a></dd>
+            <dd><a href="javascript:;">斗鱼</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <div class="layui-body">
+        <div class="layui-map">
+            <div id="map1"></div>
+            <div id="map2"></div>
+          <button class="layui-btn layui-btn-lg location">添加项目</button>
+        </div>>
+
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="layui/echarts.js"></script>
+<script src="layui/xiaoai-admin.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+
+</script>
+</body>
+</html>
