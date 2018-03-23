@@ -6,6 +6,12 @@
 	top:50%;
 	left:50%;
 }
+.location1{
+    position:fixed;
+	top:70px;
+	left:210px;
+	width:100%;
+}
 #map1{
     width:50%;
     height:40%;

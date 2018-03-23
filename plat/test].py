@@ -1,5 +1,6 @@
-# coding=utf-8
-
-s='胡丰'
-a=[s,'b']
-print ','.join(a)
+# -*- coding: UTF-8 -*-
+from selenium import webdriver
+import time
+driver = webdriver.Firefox()
+driver.get("http://www.baidu.com")
+time.sleep(5)

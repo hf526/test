@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://F:/api_plat/.idea/api_plat.iml" filepath="F:/api_plat/.idea/api_plat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api_plat/.idea/api_plat.iml" filepath="$PROJECT_DIR$/../api_plat/.idea/api_plat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jiekou_web/.idea/jiekou_web.iml" filepath="$PROJECT_DIR$/../jiekou_web/.idea/jiekou_web.iml" />
+      <module fileurl="file://F:/one_card/.idea/one_card.iml" filepath="F:/one_card/.idea/one_card.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/plat.iml" filepath="$PROJECT_DIR$/.idea/plat.iml" />
+      <module fileurl="file://D:/python/.idea/python.iml" filepath="D:/python/.idea/python.iml" />
+      <module fileurl="file://F:/test/.idea/test.iml" filepath="F:/test/.idea/test.iml" />
+    </modules>
+  </component>
+</project>
